@@ -31,6 +31,11 @@ async function fetchVoterCount()
     const count = await contract.getVoterList();
     // document.getElementById("voter-count").innerText = Voter Count: ${count.toString()};
     console.log(count);
+
+    count.map(async (eL) => {
+      const singleVoterData = await contract.getVoterdata(eL);
+      console.log(singleVoterData);
+    });
   } catch (error) {
     console.error("Error fetching the voter count:", error);
     alert("Error fetching voter count. See console for details.");
