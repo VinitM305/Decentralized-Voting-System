@@ -205,7 +205,7 @@ export const VotingProvider =({children}) =>{
     };
 
     return (
-        <VotingContext.Provider value={{votingTitle, checkIfWalletIsConnected, connectWallet, uploadToIPFS, createVoter, giveVote, createCandidate, uploadToIPFSCandidate}}>
+        <VotingContext.Provider value={{votingTitle, checkIfWalletIsConnected, connectWallet, uploadToIPFS, createVoter, giveVote, createCandidate, uploadToIPFSCandidate, currentAccount}}>
             {children}
         </VotingContext.Provider>
     );

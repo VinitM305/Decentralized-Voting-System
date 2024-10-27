@@ -173,7 +173,7 @@ const [candidateLength, setCandidateLength] = useState('');
               getVoter(setVoterArray, setVoterLength);
             }}
           >
-            Fetch Voter
+            Store all Voters
           </button>
           </div>
         </div>

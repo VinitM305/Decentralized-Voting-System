@@ -178,7 +178,7 @@ const [candidateLength, setCandidateLength] = useState('');
               getCandidate(setCandidateArray, setCandidateLength);
             }}
           >
-            Fetch Candidate
+            Store all Candidates
           </button>
           </div>
         </div>

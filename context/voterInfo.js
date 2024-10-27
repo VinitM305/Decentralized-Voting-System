@@ -8,7 +8,7 @@ const CONTRACT_ABI = voting.abi;
 // const pushVoter = [];
 // const [voterArray, setVoterArray] = useState(pushVoter);
 
-const pushVoter = [];
+
 export async function getVoter(setVoterArray, setVoterLength) 
 {
   try {
@@ -24,7 +24,7 @@ export async function getVoter(setVoterArray, setVoterLength)
     const signer = provider.getSigner();
 
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-
+    const pushVoter = [];
     const count = await contract.getVoterList();
     const voterL = await contract.getVoterLength();
 

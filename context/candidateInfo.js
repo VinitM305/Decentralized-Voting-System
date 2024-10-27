@@ -5,8 +5,7 @@ import React, {useEffect, useState} from 'react';
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const CONTRACT_ABI = voting.abi;
 
-const candidateIndex = [];
-const pushCandidate = [];
+
 
 export async function getCandidate(setCandidateArray, setCandidateLength) 
 {
@@ -19,7 +18,8 @@ export async function getCandidate(setCandidateArray, setCandidateLength)
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     await provider.send("eth_requestAccounts", []);
-
+    const candidateIndex = [];
+    const pushCandidate = [];
     const signer = provider.getSigner();
 
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
