@@ -9,16 +9,17 @@ import images from '../assets';
 import Button from '../components/Button/Button';
 import Input from '../components/Input/Input';
 const {getVoter} = require("../context/voterInfo.js");
+const {getCandidate} = require("../context/candidateInfo.js");
 
 const allowedVoters = () => {
   const [fileUrl, setFileUrl] = useState(null);
-  const [voterArray, setVoterArray] = useState([]);
+  
   const [formInput, setFormInput] = useState({
     name: "",
     address: "",
     position: "",
   });
-
+  
   const router = useRouter();
   const {uploadToIPFS, createVoter} = useContext(VotingContext);
 
@@ -37,9 +38,15 @@ const allowedVoters = () => {
     },
     maxSize: 10000000,
 });
+
+//getting data from blocks
+const [voterArray, setVoterArray] = useState([]);
+const [voterLength, setVoterLength] = useState('');
+const [candidateArray, setCandidateArray] = useState([]);
+const [candidateLength, setCandidateLength] = useState('');
 // useEffect(() => {
-//   console.log("Voter Array:", voterArray);
-// }, [voterArray]); 
+//   console.log("Voter length:", voterLength);
+// }, [voterLength]); 
 
 
 //console.log("vinit");
@@ -163,7 +170,7 @@ const allowedVoters = () => {
           </button>
           <button className={Style.btn}
             onClick={() => {
-              getVoter(setVoterArray);
+              getVoter(setVoterArray, setVoterLength);
             }}
           >
             Fetch Voter
