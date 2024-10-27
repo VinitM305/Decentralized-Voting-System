@@ -77,11 +77,11 @@ const [candidateLength, setCandidateLength] = useState('');
           !fileUrl &&(
             <div className = {Style.sideInfo}>
               <div className = {Style.sideInfo_box}>
-                <h4>Create candidate For Voting</h4>
+                <h4>Create voter For Voting</h4>
                 <p>
                   Blockchain voting organization, provide ethereum blockchain ecosystem.
                 </p>
-                <p className = {Style.sideInfo_para}>Contract Candidate List</p>
+                <p className = {Style.sideInfo_para}>Contract Voter List</p>
               </div>
 
               <div className = {Style.card}>

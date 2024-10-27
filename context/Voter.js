@@ -138,11 +138,7 @@ export const VotingProvider =({children}) =>{
 
                 const voter = await contract.voterRight(address, name, url, fileUrl);
                 console.log("Voter created", voter);
-                const r = await voter.wait();
-                if(r.status === 1)
-                    console.log("tra com");
-                else
-                    console.log("tra failed");
+                await voter.wait();
                 router.push("/voterList");
             }catch(error){
                 setError("Error in creating voter");
@@ -167,13 +163,13 @@ export const VotingProvider =({children}) =>{
     }
 
     //---------CANDIDATE SECTION---------
-    const setCandidate = async(candidateForm, fileUrl, router) => {
+    const createCandidate = async(candidateForm, fileUrl, router) => {
         try{
             const {name, address, age} = candidateForm;
             if(!name || !address || !age)
                 return setError("Input data is missing");
 
-            //console.log(name,address,age,fileUrl);
+            console.log(name,address,age,fileUrl);
             const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             const provider = new ethers.providers.Web3Provider(connection);
@@ -209,7 +205,7 @@ export const VotingProvider =({children}) =>{
     };
 
     return (
-        <VotingContext.Provider value={{votingTitle, checkIfWalletIsConnected, connectWallet, uploadToIPFS, createVoter, giveVote, setCandidate, uploadToIPFSCandidate}}>
+        <VotingContext.Provider value={{votingTitle, checkIfWalletIsConnected, connectWallet, uploadToIPFS, createVoter, giveVote, createCandidate, uploadToIPFSCandidate}}>
             {children}
         </VotingContext.Provider>
     );

@@ -21,7 +21,7 @@ const candidateRegistrations = () => {
   });
   
   const router = useRouter();
-  const {setCandidate, uploadToIPFSCandidate} = useContext(VotingContext);
+  const {createCandidate, uploadToIPFSCandidate} = useContext(VotingContext);
 
   const onDrop = useCallback(async (acceptedFil) => {
     const url = await uploadToIPFSCandidate(acceptedFil[0]);
@@ -44,9 +44,14 @@ const [voterArray, setVoterArray] = useState([]);
 const [voterLength, setVoterLength] = useState('');
 const [candidateArray, setCandidateArray] = useState([]);
 const [candidateLength, setCandidateLength] = useState('');
+
+// useEffect(() =>{
+//   getCandidate(setCandidateArray, setCandidateLength);
+// },[]);
+
 // useEffect(() => {
-//   console.log("Candidate length:", candidateLength);
-// }, [candidateLength]); 
+//   console.log("Candidate array:", candidateArray);
+// }, [candidateArray]); 
 
 
 //console.log("vinit");
@@ -85,10 +90,10 @@ const [candidateLength, setCandidateLength] = useState('');
               </div>
 
               <div className = {Style.card}>
-                {/* {voterArray.map((el, i) => (
-                  <div key = {i+1} classname={Style.card_box}>
+                {/* {candidateArray.map((el, i) => (
+                  <div key = {i+1} className={Style.card_box}>
                     <div className={Style.image}>
-                      <img src="" alt="Profile photo" />
+                      <img src={el[3]} alt="Profile photo" />
                     </div>
                     <div className={Style.card_info}>
                       <p>
@@ -163,7 +168,7 @@ const [candidateLength, setCandidateLength] = useState('');
           <div className={Style.Button}>
           <button className={Style.btn}
             onClick={() => {
-              setCandidate(candidateForm, fileUrl, router);
+              createCandidate(candidateForm, fileUrl, router);
             }}
           >
             Authorized Candidate

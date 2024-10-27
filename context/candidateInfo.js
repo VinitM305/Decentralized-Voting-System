@@ -40,7 +40,7 @@ export async function getCandidate(setCandidateArray, setCandidateLength)
 
     setCandidateArray(pushCandidate);
     setCandidateLength(candidateL.toNumber());
-    // console.log(pushCandidate);
+    //console.log(pushCandidate);
     // console.log(candidateL.toNumber());
   } catch (error) {
     console.error("Error fetching the voter count:", error);
