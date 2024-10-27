@@ -5,8 +5,6 @@ import {create as ipfsHttpClient} from 'ipfs-http-client';
 import axios from 'axios';
 import {useRouter} from 'next/router';
 
-const {fetchVoterCount} = require("./abc.js");
-
 import {VotingAddress, VotingAddressABI} from './constants';
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
 const fetchContract =(signerOrProvider) =>

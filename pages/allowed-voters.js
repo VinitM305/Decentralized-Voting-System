@@ -8,10 +8,11 @@ import Style from '../styles/allowedVoter.module.css';
 import images from '../assets';
 import Button from '../components/Button/Button';
 import Input from '../components/Input/Input';
-const {fetchVoterCount} = require("../context/abc.js");
+const {getVoter} = require("../context/voterInfo.js");
 
 const allowedVoters = () => {
   const [fileUrl, setFileUrl] = useState(null);
+  const [voterArray, setVoterArray] = useState([]);
   const [formInput, setFormInput] = useState({
     name: "",
     address: "",
@@ -36,6 +37,10 @@ const allowedVoters = () => {
     },
     maxSize: 10000000,
 });
+// useEffect(() => {
+//   console.log("Voter Array:", voterArray);
+// }, [voterArray]); 
+
 
 //console.log("vinit");
 
@@ -158,7 +163,7 @@ const allowedVoters = () => {
           </button>
           <button className={Style.btn}
             onClick={() => {
-              fetchVoterCount();
+              getVoter(setVoterArray);
             }}
           >
             Fetch Voter
