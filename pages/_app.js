@@ -9,7 +9,7 @@ const MyApp = ({ Component, pageProps }) => (
         <div>
             <NavBar />
             <div>
-                <Component {...pageProps} />;
+                <Component {...pageProps} />
             </div>
         </div>
     </VotingProvider>

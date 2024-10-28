@@ -5,10 +5,6 @@ import React, {useEffect, useState} from 'react';
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const CONTRACT_ABI = voting.abi;
 
-// const pushVoter = [];
-// const [voterArray, setVoterArray] = useState(pushVoter);
-
-
 export async function getVoter(setVoterArray, setVoterLength) 
 {
   try {
@@ -40,10 +36,10 @@ export async function getVoter(setVoterArray, setVoterLength)
 
     setVoterArray(pushVoter);
     setVoterLength(voterL.toNumber());
-    console.log(pushVoter);
+    //console.log(pushVoter);
   } catch (error) {
     console.error("Error fetching the voter count:", error);
-    alert("Error fetching voter count. See console for details.");
+    //alert("Error fetching voter count. See console for details.");
   }
 }
 

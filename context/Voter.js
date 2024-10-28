@@ -193,7 +193,7 @@ export const VotingProvider =({children}) =>{
 
                 const candidate = await contract.setCandidate(address, age, name, fileUrl, url);
                 candidate.wait();
-                //console.log("Candidate created", candidate);
+                console.log("Candidate created", candidate);
                 router.push("/");
             }catch(error){
                 setError("Error in creating candidate");
@@ -205,7 +205,7 @@ export const VotingProvider =({children}) =>{
     };
 
     return (
-        <VotingContext.Provider value={{votingTitle, checkIfWalletIsConnected, connectWallet, uploadToIPFS, createVoter, giveVote, createCandidate, uploadToIPFSCandidate, currentAccount}}>
+        <VotingContext.Provider value={{votingTitle, error, checkIfWalletIsConnected, connectWallet, uploadToIPFS, createVoter, giveVote, createCandidate, uploadToIPFSCandidate, currentAccount}}>
             {children}
         </VotingContext.Provider>
     );

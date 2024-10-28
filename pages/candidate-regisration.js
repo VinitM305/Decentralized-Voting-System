@@ -173,13 +173,13 @@ const [candidateLength, setCandidateLength] = useState('');
           >
             Authorized Candidate
           </button>
-          <button className={Style.btn}
+          {/* <button className={Style.btn}
             onClick={() => {
-              getCandidate(setCandidateArray, setCandidateLength);
+              getCandidate(setCandidateArray, setCandidateLength, router);
             }}
           >
             Store all Candidates
-          </button>
+          </button> */}
           </div>
         </div>
       </div>

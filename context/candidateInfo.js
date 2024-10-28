@@ -5,9 +5,7 @@ import React, {useEffect, useState} from 'react';
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const CONTRACT_ABI = voting.abi;
 
-
-
-export async function getCandidate(setCandidateArray, setCandidateLength) 
+export async function getCandidate(setCandidateArray, setCandidateLength, router) 
 {
   try {
     if (!window.ethereum) {
