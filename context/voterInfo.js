@@ -22,24 +22,17 @@ export async function getVoter(setVoterArray, setVoterLength)
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
     const pushVoter = [];
     const count = await contract.getVoterList();
-    const voterL = await contract.getVoterLength();
-
-    //console.log(voterL.toNumber());
-    //console.log(count);
-    
+    const voterL = await contract.getVoterLength();    
 
     count.map(async (eL) => {
       const singleVoterData = await contract.getVoterdata(eL);
       pushVoter.push(singleVoterData);
-      //console.log(singleVoterData);
     });
 
     setVoterArray(pushVoter);
     setVoterLength(voterL.toNumber());
-    //console.log(pushVoter);
   } catch (error) {
     console.error("Error fetching the voter count:", error);
-    //alert("Error fetching voter count. See console for details.");
   }
 }
 

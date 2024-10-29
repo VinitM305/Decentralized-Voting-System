@@ -168,13 +168,10 @@ export const VotingProvider =({children}) =>{
         }
         catch (error) {
             if (error?.reason) {
-                // Display the revert reason as an alert
                 alert(error.reason);
               } else if (error?.data?.message) {
-                // If error.reason is unavailable, fallback to error.data.message
                 alert("An error occurred: " + error.data.message);
               } else {
-                // Generic error message for unexpected errors
                 alert("An unexpected error occurred. Please try again.");
               }
         }

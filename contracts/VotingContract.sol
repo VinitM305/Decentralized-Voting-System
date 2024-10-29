@@ -3,7 +3,6 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
-// import "hardhat/console.sol";
 
 contract Create
 {
@@ -117,10 +116,9 @@ contract Create
     }
 
     function voterRight( address _address, string memory _name, string memory _image, string memory _ipfs) public {
-        //console.log("Starting voter creation");
+        
         require(votingOrganizer == msg.sender, "Only organizer can create voter");
         _voterId.increment();
-        //console.log("Voter ID incremented");
 
         uint256 idNumber = _voterId.current();
 
@@ -137,9 +135,7 @@ contract Create
         voter.voter_voted = false;
         voter.voter_ipfs = _ipfs;
 
-        //console.log("Voter address", _address);
         votersAddress.push(_address);
-        //console.log("Voter added successfully");
 
 
         emit VoterCreated(idNumber, _name, _image, _address, voter.voter_allowed, voter.voter_voted, voter.voter_vote, _ipfs);

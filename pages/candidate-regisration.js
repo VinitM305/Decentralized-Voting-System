@@ -39,22 +39,10 @@ const candidateRegistrations = () => {
     maxSize: 10000000,
 });
 
-//getting data from blocks
 const [voterArray, setVoterArray] = useState([]);
 const [voterLength, setVoterLength] = useState('');
 const [candidateArray, setCandidateArray] = useState([]);
 const [candidateLength, setCandidateLength] = useState('');
-
-// useEffect(() =>{
-//   getCandidate(setCandidateArray, setCandidateLength);
-// },[]);
-
-// useEffect(() => {
-//   console.log("Candidate array:", candidateArray);
-// }, [candidateArray]); 
-
-
-//console.log("vinit");
 
   return (
     <div className = {Style.createVoter}>
@@ -173,13 +161,6 @@ const [candidateLength, setCandidateLength] = useState('');
           >
             Authorized Candidate
           </button>
-          {/* <button className={Style.btn}
-            onClick={() => {
-              getCandidate(setCandidateArray, setCandidateLength, router);
-            }}
-          >
-            Store all Candidates
-          </button> */}
           </div>
         </div>
       </div>

@@ -39,17 +39,10 @@ const allowedVoters = () => {
     maxSize: 10000000,
 });
 
-//getting data from blocks
 const [voterArray, setVoterArray] = useState([]);
 const [voterLength, setVoterLength] = useState('');
 const [candidateArray, setCandidateArray] = useState([]);
 const [candidateLength, setCandidateLength] = useState('');
-// useEffect(() => {
-//   console.log("Voter length:", voterLength);
-// }, [voterLength]); 
-
-
-//console.log("vinit");
 
   return (
     <div className = {Style.createVoter}>
@@ -168,13 +161,6 @@ const [candidateLength, setCandidateLength] = useState('');
           >
             Authorized Voter
           </button>
-          {/* <button className={Style.btn}
-            onClick={() => {
-              getVoter(setVoterArray, setVoterLength);
-            }}
-          >
-            Store all Voters
-          </button> */}
           </div>
         </div>
       </div>

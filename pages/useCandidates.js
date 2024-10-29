@@ -5,7 +5,7 @@ import { getCandidate } from "../context/candidateInfo.js";
 const useCandidates = () => {
   const [candidateArray, setCandidateArray] = useState([]);
   const [candidateLength, setCandidateLength] = useState('');
-  const router = useRouter(); // Get the router instance
+  const router = useRouter(); 
 
   useEffect(() => {
       getCandidate(setCandidateArray, setCandidateLength, router);

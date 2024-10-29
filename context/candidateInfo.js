@@ -25,24 +25,16 @@ export async function getCandidate(setCandidateArray, setCandidateLength, router
     const count = await contract.getCandidate();
     const candidateL = await contract.getCandidateLength();
 
-    //console.log(voterL.toNumber());
-    //console.log(count);
-    
-
     count.map(async (eL) => {
       const singleCandidateData = await contract.getCandidatedata(eL);
       pushCandidate.push(singleCandidateData);
       candidateIndex.push(singleCandidateData[2].toNumber());
-      //console.log(singleVoterData);
     });
 
     setCandidateArray(pushCandidate);
     setCandidateLength(candidateL.toNumber());
-    //console.log(pushCandidate);
-    // console.log(candidateL.toNumber());
   } catch (error) {
-    console.error("Error fetching the voter count:", error);
-    alert("Error fetching voter count. See console for details.");
+    console.error("Error fetching the candidate count:", error);
   }
 }
 

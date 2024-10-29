@@ -12,16 +12,16 @@ const Index = () => {
   const { candidateArray, candidateLength } = useCandidates();
   const { voterArray, voterLength } = useVoters();
 
-  const [showCard, setShowCard] = useState(false); // Local state to control when to show the Card
+  const [showCard, setShowCard] = useState(false); 
 
   useEffect(() => {
     checkIfWalletIsConnected();
     
     const timer = setTimeout(() => {
-      setShowCard(true); // Set to true after 2 seconds
+      setShowCard(true); 
     }, 2000);
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
+    return () => clearTimeout(timer); 
   }, [checkIfWalletIsConnected]);
 
   console.log("why");
@@ -53,8 +53,11 @@ const Index = () => {
         </div>
       )}
       {showCard && ( 
+        candidateLength === 0 ? (
+          <p className={Style.noVotersMessage}><h1>No candidates created</h1> </p> 
+        ) : (
         <Card candidateArray={candidateArray} candidateLength={candidateLength} giveVote={giveVote} />
-      )}
+      ))}
     </div>
   );
 };

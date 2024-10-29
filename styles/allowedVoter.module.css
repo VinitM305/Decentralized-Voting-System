@@ -68,9 +68,9 @@
 }
 
 .voterInfo_paragraph{
-    /* background-color: #231E39; */
+   
     border-radius: 25px;
-    /* box-shadow: 10px 10px 15px rgba(0,0,0,0.35); */
+    
     color: #b3b8cd;
     height: 9rem;
     padding: 1rem;
@@ -133,23 +133,12 @@
 }
 
 .voterInfo{
-    /* position: absolute; */
-    /* top: 12rem; */
-    /* left: 3rem;
-    width: 15rem;
-    height: 15rem; */
-    /* padding: 1rem; */
-    /* background-color: #231E39; */
+    
     border-radius: 25px;
-    /* box-shadow: 10px 10px 15px rgba(0,0,0,0.35); */
+    
     color: #b3b8cd;
     text-align: start;
 }
-/* .Button{
-    padding-top: 2rem;
-    width: 80%;
-    margin: 0 auto;
-} */
 
 
 @media screen and (max-width: 45em){

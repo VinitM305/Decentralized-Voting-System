@@ -14,17 +14,17 @@ const VoterList = () => {
     checkIfWalletIsConnected();
     
     const timer = setTimeout(() => {
-      setShowCard(true); // Set to true after 2 seconds
+      setShowCard(true); 
     }, 2000);
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
+    return () => clearTimeout(timer); 
   }, [checkIfWalletIsConnected]);
 
   return (
     <div className={Style.voterList}>
       {showCard && (
         voterLength === 0 ? (
-          <p className={Style.noVotersMessage}><h1>No voters created</h1> </p> // Display message when no voters exist
+          <p className={Style.noVotersMessage}><h1>No voters created</h1> </p> 
         ) : (
           <VoterCard voterArray={voterArray} />
         )
