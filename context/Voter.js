@@ -137,7 +137,6 @@ export const VotingProvider =({children}) =>{
                 const url = `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
 
                 const voter = await contract.voterRight(address, name, url, fileUrl);
-                console.log("Voter created", voter);
                 await voter.wait();
                 router.push("/voterList");
             }catch(error){
@@ -163,8 +162,6 @@ export const VotingProvider =({children}) =>{
             const contract = fetchContract(signer);
 
             const voteredList = await contract.vote(voterAddress, voterId);
-
-            console.log(voteredList);
         }
         catch (error) {
             if (error?.reason) {
@@ -184,7 +181,6 @@ export const VotingProvider =({children}) =>{
             if(!name || !address || !age)
                 return setError("Input data is missing");
 
-            console.log(name,address,age,fileUrl);
             const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             const provider = new ethers.providers.Web3Provider(connection);
@@ -208,7 +204,6 @@ export const VotingProvider =({children}) =>{
 
                 const candidate = await contract.setCandidate(address, age, name, fileUrl, url);
                 candidate.wait();
-                console.log("Candidate created", candidate);
                 router.push("/");
             }catch(error){
                 setError("Error in creating candidate");

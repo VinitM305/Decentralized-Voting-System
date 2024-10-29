@@ -24,9 +24,6 @@ const Index = () => {
     return () => clearTimeout(timer); 
   }, [checkIfWalletIsConnected]);
 
-  console.log("why");
-  console.log(candidateArray);
-
   return (
     <div className={Style.home}>
       {currentAccount && 

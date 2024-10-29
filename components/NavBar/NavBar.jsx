@@ -21,8 +21,6 @@ const NavBar = () => {
       setOpenNav(true);
     }
   }
-  console.log("h");
-  console.log(openNav);
   return (
     <div className={Style.navbar}>
       {error === "" ? (
