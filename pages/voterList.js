@@ -1,14 +1,15 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import VoterCard from '../components/voterCard/voterCard';
 import Style from '../styles/voterList.module.css';
-import {VotingContext} from '../context/Voter';
+import { VotingContext } from '../context/Voter';
 import useVoters from "./useVoters";
 
-const voterList = () => {
-  const {checkIfWalletIsConnected} = useContext(VotingContext);
+const VoterList = () => {
+  const { checkIfWalletIsConnected } = useContext(VotingContext);
   const { voterArray, voterLength } = useVoters();
   const [showCard, setShowCard] = useState(false);
+  
   useEffect(() => {
     checkIfWalletIsConnected();
     
@@ -21,11 +22,15 @@ const voterList = () => {
 
   return (
     <div className={Style.voterList}>
-      {showCard && ( 
-        <VoterCard voterArray={voterArray} />
+      {showCard && (
+        voterLength === 0 ? (
+          <p className={Style.noVotersMessage}><h1>No voters created</h1> </p> // Display message when no voters exist
+        ) : (
+          <VoterCard voterArray={voterArray} />
+        )
       )}
     </div>
-  )
+  );
 };
 
-export default voterList;
+export default VoterList;
