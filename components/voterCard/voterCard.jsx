@@ -9,9 +9,9 @@ const voterCard = ({voterArray, voterLength}) => {
   return (
     <div className={Style.card}>
       {voterArray.map((el,i) => (
-        <div className={Style.card_box}>
+        <div key={i} className={Style.card_box}>
           <div className={Style.image}>
-            <img src={el[4]} alt="Profile photo"/>
+            <img src={el[4]} alt="Profile photo" height={315.6} width={315.6}/>
           </div>
           <div className={Style.card_info}>
             <h2>

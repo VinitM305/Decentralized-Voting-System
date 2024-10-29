@@ -154,11 +154,29 @@ export const VotingProvider =({children}) =>{
     const giveVote = async(id) => {
         try
         {
+            const voterAddress = id.address;
+            const voterId = id.id;
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            const signer = provider.getSigner();
+            const contract = fetchContract(signer);
 
+            const voteredList = await contract.vote(voterAddress, voterId);
+
+            console.log(voteredList);
         }
-        catch(error)
-        {
-            console.log(error);
+        catch (error) {
+            if (error?.reason) {
+                // Display the revert reason as an alert
+                alert(error.reason);
+              } else if (error?.data?.message) {
+                // If error.reason is unavailable, fallback to error.data.message
+                alert("An error occurred: " + error.data.message);
+              } else {
+                // Generic error message for unexpected errors
+                alert("An unexpected error occurred. Please try again.");
+              }
         }
     }
 

@@ -168,13 +168,13 @@ const [candidateLength, setCandidateLength] = useState('');
           >
             Authorized Voter
           </button>
-          <button className={Style.btn}
+          {/* <button className={Style.btn}
             onClick={() => {
               getVoter(setVoterArray, setVoterLength);
             }}
           >
             Store all Voters
-          </button>
+          </button> */}
           </div>
         </div>
       </div>

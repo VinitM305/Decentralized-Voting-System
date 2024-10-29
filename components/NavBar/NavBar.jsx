@@ -21,7 +21,8 @@ const NavBar = () => {
       setOpenNav(true);
     }
   }
-
+  console.log("h");
+  console.log(openNav);
   return (
     <div className={Style.navbar}>
       {error === "" ? (
@@ -62,12 +63,12 @@ const NavBar = () => {
               {openNav && (
                 <div className={Style.navigation}>
                   <p>
-                    <Link href={{pathname: '/'}}>
-                      Home
+                    <Link href={{pathname: '/'}} legacyBehavior>
+                     Home
                     </Link>
                   </p>
                   <p>
-                    <Link href={{pathname: 'candidate-regisration'}}>
+                    <Link href={{pathname: 'candidate-regisration'}} >
                       Candidate Registration
                     </Link>
                   </p>
