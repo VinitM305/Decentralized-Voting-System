@@ -43,8 +43,8 @@ contract Create
 
     mapping(address => Voter) public voters;
 
-    struct Voter{
-        uint256 voter_voterId;
+    struct Voter {
+        string voter_position;
         string voter_name;
         string voter_image;
         address voter_address;
@@ -55,9 +55,9 @@ contract Create
     }
 
     event VoterCreated(
-        uint256 indexed voter_voterId,
+        string voter_position,
         string voter_name,
-        string voter_imag,
+        string voter_image,
         address voter_address,
         uint256 voter_allowed,
         bool voter_voted,
@@ -115,32 +115,28 @@ contract Create
         );  
     }
 
-    function voterRight( address _address, string memory _name, string memory _image, string memory _ipfs) public {
-        
-        require(votingOrganizer == msg.sender, "Only organizer can create voter");
-        _voterId.increment();
+    function voterRight( address _address, string memory _name, string memory _image, string memory _ipfs, string memory _position) public {
+    require(votingOrganizer == msg.sender, "Only organizer can create voter");
+     
 
-        uint256 idNumber = _voterId.current();
+    Voter storage voter = voters[_address];
 
-        Voter storage voter = voters[_address];
+    require(voter.voter_allowed == 0);
 
-        require(voter.voter_allowed == 0);
+    voter.voter_allowed = 1;
+    voter.voter_name = _name;
+    voter.voter_image = _image;
+    voter.voter_address = _address;
+    voter.voter_position = _position;
+    voter.voter_vote = 1000;
+    voter.voter_voted = false;
+    voter.voter_ipfs = _ipfs;
+    
 
-        voter.voter_allowed = 1;
-        voter.voter_name = _name;
-        voter.voter_image = _image;
-        voter.voter_address = _address;
-        voter.voter_voterId = idNumber;
-        voter.voter_vote = 1000;
-        voter.voter_voted = false;
-        voter.voter_ipfs = _ipfs;
+    votersAddress.push(_address);
 
-        votersAddress.push(_address);
-
-
-        emit VoterCreated(idNumber, _name, _image, _address, voter.voter_allowed, voter.voter_voted, voter.voter_vote, _ipfs);
-
-    }
+    emit VoterCreated(_position, _name, _image, _address, voter.voter_allowed, voter.voter_voted, voter.voter_vote, _ipfs);
+}
 
     function vote(address _candidateAddress, uint256 _candidateVoteId) external {
         Voter storage voter = voters[msg.sender];
@@ -162,11 +158,10 @@ contract Create
         return votersAddress.length;
     }
 
-    function getVoterdata (address _address) public view returns (uint256, string memory, string memory, address,
-    string memory, uint256, bool)
+    function getVoterdata(address _address) public view returns (string memory, string memory, string memory, address, string memory, uint256, bool)
     {
         return (
-            voters[_address].voter_voterId,
+            voters[_address].voter_position,
             voters[_address].voter_name,
             voters[_address].voter_image,
             voters[_address].voter_address,

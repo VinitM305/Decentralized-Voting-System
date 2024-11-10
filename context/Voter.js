@@ -110,19 +110,22 @@ export const VotingProvider =({children}) =>{
     // CREATE VOTER
 
     const createVoter = async(formInput, fileUrl, router) => {
-        try{
-            const {name, address, position} = formInput;
-            if(!name || !address || !position)
+        try {
+            const { name, address, position } = formInput;
+            if (!name || !address || !position) {
                 return setError("Input data is missing");
-
+            }
+    
             const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             const provider = new ethers.providers.Web3Provider(connection);
             const signer = provider.getSigner();
             const contract = fetchContract(signer);
-
-            const data = JSON.stringify({name, address, position, image: fileUrl});
-            try{
+    
+            const data = JSON.stringify({ name, address, position, image: fileUrl });
+            console.log("data");
+            console.log(data);
+            try {
                 const response = await axios({
                     method: "POST",
                     url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
@@ -133,35 +136,38 @@ export const VotingProvider =({children}) =>{
                         "Content-Type": "application/json",
                     },
                 });
-
+    
                 const url = `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
-
-                const voter = await contract.voterRight(address, name, url, fileUrl);
+                console.log("hiii");
+                const voter = await contract.voterRight(address, name, url, fileUrl, position);
+                console.log(voter);
                 await voter.wait();
                 router.push("/voterList");
-            }catch(error){
+            } catch (error) {
                 setError("Error in creating voter");
             }
-            
         } catch (error) {
             setError("Error in creating voter");
         }
     };
+    
 
     //Give Vote
 
     const giveVote = async(id) => {
         try
         {
-            const voterAddress = id.address;
-            const voterId = id.id;
+            const candidateAddress = id.address;
+            const candidateId = id.id;
             const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             const provider = new ethers.providers.Web3Provider(connection);
             const signer = provider.getSigner();
             const contract = fetchContract(signer);
 
-            const voteredList = await contract.vote(voterAddress, voterId);
+            //console.log("Voter Address:", currentAccount); 
+
+            const voteredList = await contract.vote(candidateAddress, candidateId);
         }
         catch (error) {
             if (error?.reason) {

@@ -78,24 +78,7 @@ const [candidateLength, setCandidateLength] = useState('');
               </div>
 
               <div className = {Style.card}>
-                {/* {voterArray.map((el, i) => (
-                  <div key = {i+1} classname={Style.card_box}>
-                    <div className={Style.image}>
-                      <img src="" alt="Profile photo" />
-                    </div>
-                    <div className={Style.card_info}>
-                      <p>
-                        Name
-                      </p>
-                      <p>
-                        Address
-                      </p>
-                      <p>
-                        Details
-                      </p>
-                    </div>
-                  </div>
-                ))} */}
+                
               </div>
             </div>
           )
@@ -147,8 +130,8 @@ const [candidateLength, setCandidateLength] = useState('');
           />
           <Input 
             inputType="text"
-            title="Position"
-            placeholder="Voter Position"
+            title="Password"
+            placeholder="Voter Password"
             handleClick={(e) => 
               setFormInput({...formInput, position: e.target.value })
             }

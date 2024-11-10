@@ -5,34 +5,32 @@ import React, {useEffect, useState} from 'react';
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const CONTRACT_ABI = voting.abi;
 
-export async function getVoter(setVoterArray, setVoterLength) 
-{
+export async function getVoter(setVoterArray, setVoterLength) {
   try {
-    if (!window.ethereum) {
-      alert("MetaMask is not installed!");
-      return;
-    }
+      if (!window.ethereum) {
+          alert("MetaMask is not installed!");
+          return;
+      }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
 
-    await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+      const pushVoter = [];
+      const count = await contract.getVoterList();
+      const voterL = await contract.getVoterLength();
 
-    const signer = provider.getSigner();
+      count.map(async (eL) => {
+          const singleVoterData = await contract.getVoterdata(eL);
+          pushVoter.push(singleVoterData);
+      });
 
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-    const pushVoter = [];
-    const count = await contract.getVoterList();
-    const voterL = await contract.getVoterLength();    
-
-    count.map(async (eL) => {
-      const singleVoterData = await contract.getVoterdata(eL);
-      pushVoter.push(singleVoterData);
-    });
-
-    setVoterArray(pushVoter);
-    setVoterLength(voterL.toNumber());
+      setVoterArray(pushVoter);
+      setVoterLength(voterL.toNumber());
   } catch (error) {
-    console.error("Error fetching the voter count:", error);
+      console.error("Error fetching the voter count:", error);
   }
 }
+
 
